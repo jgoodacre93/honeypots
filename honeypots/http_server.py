@@ -15,7 +15,7 @@ class QHTTPServer(BaseHttpServer):
 
     def server_main(self):
         resource = self.MainResource(hp_server=self)
-        reactor.listenTCP(self.port, Site(resource))
+        reactor.listenTCP(port=self.port, factory=Site(resource), interface=self.ip)
         reactor.run()
 
     def test_server(self, ip=None, port=None, username=None, password=None):

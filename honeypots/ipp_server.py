@@ -287,7 +287,7 @@ class QIPPServer(BaseServer):
                 )
                 return version + status_code + request_id + attributes
 
-        reactor.listenTCP(self.port, Site(MainResource()))
+        reactor.listenTCP(self.port, Site(MainResource()), interface=self.ip)
         reactor.run()
 
     def test_server(self, ip=None, port=None):

@@ -18,7 +18,7 @@ class QHTTPSServer(BaseHttpServer):
         resource = self.MainResource(hp_server=self)
         with create_certificate() as (cert, key):
             ssl_context = ssl.DefaultOpenSSLContextFactory(key, cert)
-            reactor.listenSSL(self.port, Site(resource), ssl_context)
+            reactor.listenSSL(self.port, Site(resource), ssl_context, interface=self.ip)
             reactor.run()
 
     def test_server(self, ip=None, port=None, username=None, password=None):

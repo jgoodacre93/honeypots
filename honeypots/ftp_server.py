@@ -147,7 +147,7 @@ class QFTPServer(BaseServer):
         factory = FTPFactory(p)
         factory.protocol = CustomFTPProtocol
         factory.welcomeMessage = "ProFTPD 1.2.10"
-        reactor.listenTCP(port=self.port, factory=factory)
+        reactor.listenTCP(port=self.port, factory=factory, interface=self.ip)
         reactor.run()
 
     def test_server(self, ip=None, port=None, username=None, password=None):
